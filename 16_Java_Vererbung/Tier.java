@@ -1,13 +1,13 @@
 import java.awt.Graphics;
 
 public class Tier {
-    private boolean weiblich;
+    protected boolean weiblich;
     
     public Tier(boolean weiblich) {
     	this.weiblich = weiblich;
     }
     
-    public boolean getWeiblich(){
+    public boolean getWeiblich() {
     	return weiblich;
     }
     
