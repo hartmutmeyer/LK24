@@ -18,7 +18,7 @@ public class AnlegeSchiff extends FensterSchiff {
 		switch (zustand) {
 		case NICHT_ANGELEGT:
 			super.bewegen();
-			if (xPos == stegPos) {
+			if (xPos >= stegPos && xPos < stegPos + speed) {
 				zustand = ANGELEGT;
 			}
 			break;
