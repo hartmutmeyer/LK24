@@ -7,35 +7,40 @@ public class Philosoph extends Thread {
 	// Klassenvariablen
 	private static Random zufall = new Random();
 
-
 	// Objektvariablen
-	int zustand = OHNE_STAEBCHEN;
+	private int zustand = OHNE_STAEBCHEN;
 	private int staebchenRechts;
 	private int staebchenLinks;
 	private int anzahlStaebchen;
 	private Tisch tisch;
+	private boolean staebchen[];
 
-	public Philosoph(Tisch tisch, int platz) {
+	public Philosoph(Tisch tisch, boolean staebchen[], int platz) {
 		this.tisch = tisch;
+		this.staebchen = staebchen;
 		this.staebchenRechts = platz;
 		staebchenLinks = platz - 1;
 		if (staebchenLinks < 0) {
 			staebchenLinks = 4;
 		}
 	}
+	
+	public int getZustand() {
+		return zustand;
+	}
 
-	boolean nimmStaebchen(int staebchen) {
+	boolean nimmStaebchen(int pos) {
 		boolean erfolg = false;
-		if (!tisch.staebchen[staebchen]) {
-			tisch.staebchen[staebchen] = true;
+		if (!staebchen[pos]) {
+			staebchen[pos] = true;
 			erfolg = true;
 		}
 		return erfolg;
 	}
 
 	void staebchenFreigeben() {
-		tisch.staebchen[staebchenRechts] = false;
-		tisch.staebchen[staebchenLinks] = false;
+		staebchen[staebchenRechts] = false;
+		staebchen[staebchenLinks] = false;
 	}
 
 	@Override
@@ -53,26 +58,27 @@ public class Philosoph extends Thread {
 				anzahlStaebchen++;
 			}
 			switch (anzahlStaebchen) {
-			case 0:
-				zustand = OHNE_STAEBCHEN;
-				tisch.repaint();
-				break;
-			case 1:
-				zustand = MIT_EINEM_STAEBCHEN;
-				tisch.repaint();
-				break;
-			case 2:
-				zustand = MIT_ZWEI_STAEBCHEN;
-				tisch.repaint();
-				// Essen simulieren
-				try {
-					Thread.sleep((zufall.nextInt(10) + 1) * 150);
-				} catch (Exception e) {
+				case 0 -> {
+					zustand = OHNE_STAEBCHEN;
+					tisch.repaint();
 				}
-				staebchenFreigeben();
-				anzahlStaebchen = 0;
-				zustand = OHNE_STAEBCHEN;
-				tisch.repaint();
+				case 1 -> {
+					zustand = MIT_EINEM_STAEBCHEN;
+					tisch.repaint();
+				}
+				case 2 -> {
+					zustand = MIT_ZWEI_STAEBCHEN;
+					tisch.repaint();
+					// Essen simulieren
+					try {
+						Thread.sleep((zufall.nextInt(10) + 1) * 150);
+					} catch (Exception e) {
+					}
+					staebchenFreigeben();
+					anzahlStaebchen = 0;
+					zustand = OHNE_STAEBCHEN;
+					tisch.repaint();
+				}
 			}
 		}
 	}

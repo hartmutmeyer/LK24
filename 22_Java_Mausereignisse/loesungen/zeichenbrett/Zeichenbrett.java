@@ -17,8 +17,8 @@ public class Zeichenbrett extends HJFrame implements MouseListener, MouseMotionL
 	private static final Color FOREGROUND = Color.BLACK;
 	private Color pixel[][] = new Color[500][500];
 	private Color farbe = Color.BLACK;
-	private int breite = 1;
-	
+	private int breite = 5;
+
 	public Zeichenbrett(final String title) {
 		super(WIDTH, HEIGHT, BACKGROUND, FOREGROUND, title);
 		// eigene Initialisierung
@@ -41,6 +41,7 @@ public class Zeichenbrett extends HJFrame implements MouseListener, MouseMotionL
 	}
 
 	// Anfang Ereignisprozeduren
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		for (int x = e.getX(); x < e.getX() + breite; x++) {
 			for (int y = e.getY(); y < e.getY() + breite; y++) {
@@ -50,16 +51,22 @@ public class Zeichenbrett extends HJFrame implements MouseListener, MouseMotionL
 		repaint();
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {}
 
+	@Override
 	public void mouseEntered(MouseEvent e) {}
 
+	@Override
 	public void mouseExited(MouseEvent e) {}
 
+	@Override
 	public void mouseMoved(MouseEvent e) {}
 
+	@Override
 	public void mouseDragged(MouseEvent e) {
 		for (int x = e.getX(); x < e.getX() + breite; x++) {
 			for (int y = e.getY(); y < e.getY() + breite; y++) {
@@ -69,41 +76,37 @@ public class Zeichenbrett extends HJFrame implements MouseListener, MouseMotionL
 		repaint();
 	}
 
+	@Override
 	public void keyTyped(KeyEvent e) {
-		if (e.getKeyChar() == 'l' || e.getKeyChar() == 'L') {
-			for (int x = 0; x < 500; x++) {
-				for (int y = 0; y < 500; y++) {
-					pixel[x][y] = null;
+		switch (e.getKeyChar()) {
+			case 'l', 'L' -> {
+				for (int x = 0; x < 500; x++) {
+					for (int y = 0; y < 500; y++) {
+						pixel[x][y] = null;
+					}
 				}
+				repaint();
 			}
-			repaint();
-		}
-		if (e.getKeyChar() == 's' || e.getKeyChar() == 'S') {
-			farbe = Color.BLACK;
-		}
-		if (e.getKeyChar() == 'r' || e.getKeyChar() == 'R') {
-			farbe = Color.RED;
-		}
-		if (e.getKeyChar() == 'b' || e.getKeyChar() == 'B') {
-			farbe = Color.BLUE;
-		}
-		if (e.getKeyChar() == 'g' || e.getKeyChar() == 'G') {
-			farbe = Color.GREEN;
-		}
-		if (e.getKeyChar() >= '1' && e.getKeyChar() <= '9') {
-			breite = e.getKeyChar() - '0';
+			case 's', 'S' -> farbe = Color.BLACK;
+			case 'r', 'R' -> farbe = Color.RED;
+			case 'b', 'B' -> farbe = Color.BLUE;
+			case 'g', 'G' -> farbe = Color.GREEN;
+			case '1', '2', '3', '4', '5', '6', '7', '8', '9' -> breite = e.getKeyChar() - '0';
 		}
 	}
 
+	@Override
 	public void keyPressed(KeyEvent e) {}
 
+	@Override
 	public void keyReleased(KeyEvent e) {}
-	
+
 	public static void main(final String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
-					Zeichenbrett anwendung = new Zeichenbrett("JZeichenbrett");
+					Zeichenbrett anwendung = new Zeichenbrett("Zeichenbrett");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

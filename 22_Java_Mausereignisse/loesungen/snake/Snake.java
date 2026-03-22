@@ -101,18 +101,18 @@ public class Snake extends HJFrame implements MouseListener, KeyListener {
 		for (int x = 0; x < XMAX; x++) {
 			for (int y = 0; y < YMAX; y++) {
 				switch (feld[x][y]) {
-				case ROT:
-					g.setColor(Color.RED);
-					g.fillRect(x * BREITE, y * BREITE, BREITE, BREITE);
-					break;
-				case BLAU:
-					g.setColor(Color.BLUE);
-					g.fillRect(x * BREITE, y * BREITE, BREITE, BREITE);
-					break;
-				case WAND:
-					g.setColor(Color.BLACK);
-					g.fillRect(x * BREITE, y * BREITE, BREITE, BREITE);
-					break;
+					case ROT -> {
+						g.setColor(Color.RED);
+						g.fillRect(x * BREITE, y * BREITE, BREITE, BREITE);
+					}
+					case BLAU -> {
+						g.setColor(Color.BLUE);
+						g.fillRect(x * BREITE, y * BREITE, BREITE, BREITE);
+					}
+					case WAND -> {
+						g.setColor(Color.BLACK);
+						g.fillRect(x * BREITE, y * BREITE, BREITE, BREITE);
+					}
 				}
 			}
 		}
@@ -125,51 +125,57 @@ public class Snake extends HJFrame implements MouseListener, KeyListener {
 		vyRot = 0;
 		timer.stop();
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
-				JOptionPane.showMessageDialog(null, nachricht, "Game Over",
-						JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, nachricht, "Game Over", JOptionPane.INFORMATION_MESSAGE);
 				System.exit(0);
 			}
 		});
 	}
 
+	@Override
 	public void keyTyped(KeyEvent e) {
 	}
 
+	@Override
 	public void keyPressed(KeyEvent e) {
-		int c = e.getKeyCode();
-		if (c == KeyEvent.VK_UP) {
-			if (vyRot == 0) {
-				vyRot = OBEN;
-				vxRot = 0;
+		switch (e.getKeyCode()) {
+			case KeyEvent.VK_UP -> {
+				if (vyRot == 0) {
+					vyRot = OBEN;
+					vxRot = 0;
+				}
 			}
-		}
-		if (c == KeyEvent.VK_DOWN) {
-			if (vyRot == 0) {
-				vyRot = UNTEN;
-				vxRot = 0;
+			case KeyEvent.VK_DOWN -> {
+				if (vyRot == 0) {
+					vyRot = UNTEN;
+					vxRot = 0;
+				}
 			}
-		}
-		if (c == KeyEvent.VK_RIGHT) {
-			if (vxRot == 0) {
-				vxRot = RECHTS;
-				vyRot = 0;
+			case KeyEvent.VK_RIGHT -> {
+				if (vxRot == 0) {
+					vxRot = RECHTS;
+					vyRot = 0;
+				}
 			}
-		}
-		if (c == KeyEvent.VK_LEFT) {
-			if (vxRot == 0) {
-				vxRot = LINKS;
-				vyRot = 0;
+			case KeyEvent.VK_LEFT -> {
+				if (vxRot == 0) {
+					vxRot = LINKS;
+					vyRot = 0;
+				}
 			}
 		}
 	}
 
+	@Override
 	public void keyReleased(KeyEvent e) {
 	}
 
+	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 		// nach links drehen wenn der linke Mausknopf gedrückt wurde
 		if (e.getButton() == MouseEvent.BUTTON1) {
@@ -213,17 +219,21 @@ public class Snake extends HJFrame implements MouseListener, KeyListener {
 		}
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
 	}
 
+	@Override
 	public void mouseEntered(MouseEvent e) {
 	}
 
+	@Override
 	public void mouseExited(MouseEvent e) {
 	}
 
 	public static void main(final String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					Snake anwendung = new Snake("Snake");

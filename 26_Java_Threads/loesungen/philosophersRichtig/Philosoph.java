@@ -8,25 +8,32 @@ public class Philosoph extends Thread {
 	private static Object monitor = new Object();
 
 	// Objektvariablen
-	int zustand = RUHT_SICH_AUS;;
+	private int zustand = RUHT_SICH_AUS;;
 	private int staebchenRechts;
 	private int staebchenLinks;
 	private Tisch tisch;
+	private boolean staebchen[];
 
-	public Philosoph(Tisch tisch, int platz) {
+	public Philosoph(Tisch tisch, boolean staebchen[], int platz) {
 		this.tisch = tisch;
+		this.staebchen = staebchen;
 		this.staebchenRechts = platz;
 		staebchenLinks = platz - 1;
-		if (staebchenLinks < 0)
+		if (staebchenLinks < 0) {
 			staebchenLinks = 4;
+		}
+	}
+
+	public int getZustand() {
+		return zustand;
 	}
 
 	boolean nimmStaebchen() {
 		boolean erfolg = false;
 		synchronized (monitor) {
-			if (!tisch.staebchen[staebchenRechts] && !tisch.staebchen[staebchenLinks]) {
-				tisch.staebchen[staebchenRechts] = true;
-				tisch.staebchen[staebchenLinks] = true;
+			if (!staebchen[staebchenRechts] && !staebchen[staebchenLinks]) {
+				staebchen[staebchenRechts] = true;
+				staebchen[staebchenLinks] = true;
 				erfolg = true;
 			}
 		}
@@ -35,8 +42,8 @@ public class Philosoph extends Thread {
 
 	void staebchenFreigeben() {
 		synchronized (monitor) {
-			tisch.staebchen[staebchenRechts] = false;
-			tisch.staebchen[staebchenLinks] = false;
+			staebchen[staebchenRechts] = false;
+			staebchen[staebchenLinks] = false;
 		}
 	}
 

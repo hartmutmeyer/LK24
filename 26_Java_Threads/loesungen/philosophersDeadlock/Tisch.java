@@ -19,7 +19,7 @@ public class Tisch extends JFrame {
 	private JPanel zeichenflaeche;
 	private Philosoph philosoph[] = new Philosoph[5];
 	private Image imgEssen, imgEinStaebchen, imgAusruhen, img;
-	boolean staebchen[] = new boolean[5];
+	private boolean staebchen[] = new boolean[5];
 
 	public Tisch(final String title) {
 		super(title);
@@ -61,13 +61,13 @@ public class Tisch extends JFrame {
 		}
 
 		for (int platz = 0; platz < 5; platz++) {
-			philosoph[platz] = new Philosoph(this, platz);
+			philosoph[platz] = new Philosoph(this, staebchen, platz);
 			philosoph[platz].start();
 		}
 	}
 
 	Image getImage(Philosoph phil) {
-		switch (phil.zustand) {
+		switch (phil.getZustand()) {
 		case Philosoph.OHNE_STAEBCHEN:
 			img = imgAusruhen;
 			break;

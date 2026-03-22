@@ -34,13 +34,14 @@ public class Zeichnen extends HJFrame implements KeyListener {
     public void keyPressed(KeyEvent e) { 
         int c = e.getKeyCode();
         switch (c) {
-            case KeyEvent.VK_M:    // Taste 'M' (egal ob groß oder klein)
+            case KeyEvent.VK_M -> {     // Taste 'M' (egal ob groß oder klein)
                 bKreisZeichnen = true;
-                repaint(); // Bildschirm neu malen
-                break;
-            case KeyEvent.VK_L:    // Taste 'L'
+                repaint();              // Bildschirm neu malen
+            }
+            case KeyEvent.VK_L -> {     // Taste 'L'
                 bKreisZeichnen = false;
-                repaint(); // Bildschirm neu malen
+                repaint();              // Bildschirm neu malen
+            }
         }
     }
 

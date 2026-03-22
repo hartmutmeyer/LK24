@@ -177,33 +177,16 @@ public class Dialoge extends JFrame {
 	}
 
 	private int punkte2note(int punkte) {
-		switch (punkte) {
-		case 0:
-			return 6;
-		case 1:
-		case 2:
-		case 3:
-			return 5;
-		case 4:
-		case 5:
-		case 6:
-			return 4;
-		case 7:
-		case 8:
-		case 9:
-			return 3;
-		case 10:
-		case 11:
-		case 12:
-			return 2;
-		case 13:
-		case 14:
-		case 15:
-			return 1;
-		default:
-			return -1;
-		}
-
+		int note = switch (punkte) {
+			case 0 -> 6;
+			case 1, 2, 3 -> 5;
+			case 4, 5, 6 -> 4;
+			case 7, 8, 9 -> 3;
+			case 10, 11, 12 -> 2;
+			case 13, 14, 15 -> 1;
+			default -> -1;
+		};
+		return note;
 	}
 
 	private void aufg5() {
