@@ -13,18 +13,18 @@ Query executed in 15 ms.
 
 vorname              nachname             vorname              nachname             g verwandt 
 -------------------- -------------------- -------------------- -------------------- - -------- 
-Ahmad                Jabbar               <null>               <null>               < <null>   
-Alicia               Zelaya               <null>               <null>               < <null>   
-Franklin             Wong                 Alice                Wong                 w Tochter  
-Franklin             Wong                 Joy                  Wong                 w Ehegatte 
-Franklin             Wong                 Theodore             Wong                 m Sohn     
 James                Borg                 <null>               <null>               < <null>   
-Jennifer             Wallace              Abner                Wallace              m Ehegatte 
+Joyce                English              <null>               <null>               < <null>   
+Ahmad                Jabbar               <null>               <null>               < <null>   
+Ramesh               Narayan              <null>               <null>               < <null>   
 John                 Smith                Alice                Goldman              w Tochter  
 John                 Smith                Elizabeth            Smith                w Ehegatte 
 John                 Smith                Michael              Smith                m Sohn     
-Joyce                English              <null>               <null>               < <null>   
-Ramesh               Narayan              <null>               <null>               < <null>   
+Jennifer             Wallace              Abner                Wallace              m Ehegatte 
+Franklin             Wong                 Alice                Wong                 w Tochter  
+Franklin             Wong                 Joy                  Wong                 w Ehegatte 
+Franklin             Wong                 Theodore             Wong                 m Sohn     
+Alicia               Zelaya               <null>               <null>               < <null>   
 Number of rows returned: 12
 Query executed in 2 ms.
 

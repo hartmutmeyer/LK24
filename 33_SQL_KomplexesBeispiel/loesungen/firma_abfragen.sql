@@ -19,7 +19,7 @@ ORDER BY abteilung.abteilungsname DESC;
 SELECT angestellter.vorname, angestellter.nachname, angehöriger.vorname, angehöriger.nachname, angehöriger.geschlecht, angehöriger.verwandtschaft
 FROM angestellter LEFT JOIN angehöriger
 ON angestellter.angestellter_id = angehöriger.angehöriger_angestellter_id
-ORDER BY angestellter.vorname, angestellter.nachname, angehöriger.vorname;
+ORDER BY angestellter.nachname, angestellter.vorname, angehöriger.vorname;
 
 # 2c
 # Ermittle den Namen (Vor- und Nachname) des Vorgesetzten von Jennifer Wallace.
