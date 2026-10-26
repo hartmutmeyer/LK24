@@ -22,6 +22,34 @@ public class Zahlenliste2 extends HJFrame {
 		}
 	}
 
+	private int summeAllerZahlenDesArrays(int[] z) {
+		int sum = 0;
+		for (int i = 0; i < z.length; i++) {
+			sum = sum + z[i];
+		}
+		return sum;
+	}
+
+	private int kleinsteZahlDesArrays(int[] array) {
+		int min = 100;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] < min) {
+				min = array[i];
+			}
+		}
+		return min;
+	}
+
+	private int größteZahlDesArrays(int[] array) {
+		int max = 0;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] > max) {
+				max = array[i];
+			}
+		}
+		return max;
+	}
+
 	@Override
 	public void myPaint(Graphics g) {
 		// wird aufgerufen, wenn das Fenster neu gezeichnet wird
@@ -30,29 +58,13 @@ public class Zahlenliste2 extends HJFrame {
 		}
 
 		// Summe
-		int sum = 0;
-		for (int x = 0; x < z.length; x++) {
-			sum = sum + z[x];
-		}
-		g.drawString("Summe:  " + sum, 30, 60);
+		g.drawString("Summe:  " + summeAllerZahlenDesArrays(z), 30, 60);
 
 		// kleinste Zahl
-		int min = z[0];
-		for (int x = 1; x < z.length; x++) {
-			if (z[x] < min) {
-				min = z[x];
-			}
-		}
-		g.drawString("Kleinste Zahl: " + min, 30, 90);
+		g.drawString("Kleinste Zahl: " + kleinsteZahlDesArrays(z), 30, 90);
 
 		// größte Zahl
-		int max = z[0];
-		for (int x = 1; x < z.length; x++) {
-			if (z[x] > max) {
-				max = z[x];
-			}
-		}
-		g.drawString("Größte Zahl: " + max, 30, 120);
+		g.drawString("Größte Zahl: " + größteZahlDesArrays(z), 30, 120);
 	}
 
 	public static void main(final String[] args) {
