@@ -42,7 +42,6 @@ public class TiereLoeschen extends JFrame {
 	 */
 	public TiereLoeschen() {
 		createGUI();
-
 	}
 
 	private void createGUI() {
@@ -88,7 +87,7 @@ public class TiereLoeschen extends JFrame {
 				int ergebnis = stmt.executeUpdate(sql);
 				JOptionPane.showMessageDialog(this, "Für das Tier mit der ID " + id + " wurden " + ergebnis + " Einträge in der Beziehungstabelle entfernt.");
 				
-				// Anschließend kann auch das Tier gelsöcht werden
+				// Anschließend kann auch das Tier gelöscht werden
 				sql = "DELETE FROM tier WHERE tier_id = " + id;
 				System.out.println("tierLöschen(): " + sql);
 				ergebnis = stmt.executeUpdate(sql);
