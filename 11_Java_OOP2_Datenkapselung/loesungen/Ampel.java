@@ -22,29 +22,30 @@ public class Ampel {
 
 	public void umschalten() {
 		switch (zustand) {
-		case GRUEN:
-			zustand = GELB;
-			rot.aus();
-			gelb.an();
-			gruen.aus();
-			break;
-		case GELB:
-			zustand = ROT;
-			rot.an();
-			gelb.aus();
-			gruen.aus();
-			break;
-		case ROT:
-			zustand = GELBROT;
-			rot.an();
-			gelb.an();
-			gruen.aus();
-			break;
-		case GELBROT:
-			zustand = GRUEN;
-			rot.aus();
-			gelb.aus();
-			gruen.an();
+			case GRUEN -> {
+				zustand = GELB;
+				rot.aus();
+				gelb.an();
+				gruen.aus();
+			}
+			case GELB -> {
+				zustand = ROT;
+				rot.an();
+				gelb.aus();
+				gruen.aus();
+			}
+			case ROT -> {
+				zustand = GELBROT;
+				rot.an();
+				gelb.an();
+				gruen.aus();
+			}
+			case GELBROT -> {
+				zustand = GRUEN;
+				rot.aus();
+				gelb.aus();
+				gruen.an();
+			}
 		}
 	}
 

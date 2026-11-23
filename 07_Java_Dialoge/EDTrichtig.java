@@ -13,16 +13,14 @@ public class EDTrichtig extends HJFrame {
 	final static Color BACKGROUND = Color.WHITE;
 	final static Color FOREGROUND = Color.BLACK;
 	String name;
-	
+
 	public EDTrichtig(final String title) {
 		super(WIDTH, HEIGHT, BACKGROUND, FOREGROUND, title);
 		// eigene Initialisierung
 		name = "Rumpelstilzchen";
-		EventQueue.invokeLater(new Runnable() {
-		    public void run() {
-		        name = JOptionPane.showInputDialog("Gib deinen Namen ein:");
-				System.out.println("Hallo " + name + "!");
-		    }
+		EventQueue.invokeLater(() -> {
+			name = JOptionPane.showInputDialog("Gib deinen Namen ein:");
+			System.out.println("Hallo " + name + "!");
 		});
 	}
 
@@ -34,6 +32,7 @@ public class EDTrichtig extends HJFrame {
 
 	public static void main(final String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					EDTrichtig anwendung = new EDTrichtig("EDTrichtig");

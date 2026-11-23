@@ -1,6 +1,6 @@
 package hilfe;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class HZeichnen {
 	public static void drawDreieck(Graphics g, int x1, int y1, int x2, int y2,

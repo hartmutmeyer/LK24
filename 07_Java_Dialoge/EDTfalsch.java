@@ -18,10 +18,8 @@ public class EDTfalsch extends HJFrame {
 		super(WIDTH, HEIGHT, BACKGROUND, FOREGROUND, title);
 		// eigene Initialisierung
 		name = "Rumpelstilzchen";
-		EventQueue.invokeLater(new Runnable() {
-		    public void run() {
-		        name = JOptionPane.showInputDialog("Gib deinen Namen ein:");
-		    }
+		EventQueue.invokeLater(() -> {
+			name = JOptionPane.showInputDialog("Gib deinen Namen ein:");
 		});
 		System.out.println("Hallo " + name + "!");
 	}
@@ -34,6 +32,7 @@ public class EDTfalsch extends HJFrame {
 
 	public static void main(final String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					EDTfalsch anwendung = new EDTfalsch("EDTfalsch");

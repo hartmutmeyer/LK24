@@ -46,23 +46,22 @@ public class Lichterkette {
 	public void zeichnen(Graphics g) {
 		zustand++;
 		switch (zustand % 3) {
-		case 0: 
-			lampeRot.an();
-			lampeBlau.aus();
-			lampeGelb.an();
-			lampeGruen.aus();
-			lampeCyan.an();
-			break;
-		case 1:
-			lampeRot.aus();
-			lampeBlau.an();
-			lampeGelb.aus();
-			lampeGruen.an();
-			lampeCyan.aus();
-			break;
-		case 2:
-			aus();
-		}	
+			case 0 -> {
+				lampeRot.an();
+				lampeBlau.aus();
+				lampeGelb.an();
+				lampeGruen.aus();
+				lampeCyan.an();
+			}
+			case 1 -> {
+				lampeRot.aus();
+				lampeBlau.an();
+				lampeGelb.aus();
+				lampeGruen.an();
+				lampeCyan.aus();
+			}
+			case 2 -> aus();
+		}
 		lampeRot.zeichnen(g);
 		lampeBlau.zeichnen(g);
 		lampeGelb.zeichnen(g);

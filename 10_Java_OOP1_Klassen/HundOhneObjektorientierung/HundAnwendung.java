@@ -93,7 +93,7 @@ public class HundAnwendung extends HJFrame {
 			hundZeichnen(g, bobbyX, bobbyY, bobbyFarbe, false, false);
 		}
 		bobbyX += bobbyGeschwindigkeit;
-		if (bobbyX > 500) {
+		if (bobbyX > WIDTH) {
 			bobbyX = -60;
 		}
 
@@ -103,7 +103,7 @@ public class HundAnwendung extends HJFrame {
 			hundZeichnen(g, charlieX, charlieY, charlieFarbe, false, true);
 		}
 		charlieX += charlieGeschwindigkeit;
-		if (charlieX > 500) {
+		if (charlieX > WIDTH) {
 			charlieX = -60;
 		}
 

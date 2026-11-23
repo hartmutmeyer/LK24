@@ -8,6 +8,7 @@ public class Blume {
 	private Color farbeStempel = Color.YELLOW;
 	private Color farbeStaengel = Color.GREEN;
 	private int zeitZumVerbluehen = 200;
+	private boolean verblueht = false;
 
 	public Blume(int xpos, int ypos) {
 		x = xpos;
@@ -22,34 +23,28 @@ public class Blume {
 
 	public void zeichnen(Graphics g) {
 		if (y >= 100) {
-			g.setColor(farbeStaengel);
-			g.fillRect(x + 29, y + 60, 3, 1000);
-			g.setColor(farbeStempel);
-			g.fillOval(x + 20, y + 20, 20, 20);
+			// Die Blume wächst noch
+			y--;
+		} else {
+			if (zeitZumVerbluehen > 0) {
+				zeitZumVerbluehen--;
+			} else {
+				verblueht = true;
+			}
+		}
+		// Die Blume zeichen
+		//  ° Blumenstängel und Blütenstempel in jedem Fall:
+		g.setColor(farbeStaengel);
+		g.fillRect(x + 29, y + 40, 3, 1000);
+		g.setColor(farbeStempel);
+		g.fillOval(x + 20, y + 20, 20, 20);
+		//  ° Die Blütenblätter nur, wenn die Blume noch nicht verblüht ist:
+		if (!verblueht) {
 			g.setColor(farbeBluetenblatt);
 			g.fillOval(x + 20, y, 20, 20);
 			g.fillOval(x, y + 20, 20, 20);
 			g.fillOval(x + 40, y + 20, 20, 20);
 			g.fillOval(x + 20, y + 40, 20, 20);
-			y--;
-		} else {
-			if (zeitZumVerbluehen > 0) {
-				g.setColor(farbeStaengel);
-				g.fillRect(x + 29, y + 40, 3, 1000);
-				g.setColor(farbeStempel);
-				g.fillOval(x + 20, y + 20, 20, 20);
-				g.setColor(farbeBluetenblatt);
-				g.fillOval(x + 20, y, 20, 20);
-				g.fillOval(x, y + 20, 20, 20);
-				g.fillOval(x + 40, y + 20, 20, 20);
-				g.fillOval(x + 20, y + 40, 20, 20);
-				zeitZumVerbluehen--;
-			} else {
-				g.setColor(farbeStaengel);
-				g.fillRect(x + 29, y + 40, 3, 1000);
-				g.setColor(farbeStempel);
-				g.fillOval(x + 20, y + 20, 20, 20);
-			}
 		}
 	}
 }

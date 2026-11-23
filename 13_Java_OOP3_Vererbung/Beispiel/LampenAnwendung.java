@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.swing.Timer;
 
+import vererbung.Lampe;
 import hilfe.*;
 
 public class LampenAnwendung extends HJFrame {
@@ -17,23 +18,19 @@ public class LampenAnwendung extends HJFrame {
 	private Lampe lampe1, lampe4;
 	private QuadratLampe lampe2;
 	private RahmenLampe lampe3;
-	
+
 	public LampenAnwendung(final String title) {
 		super(WIDTH, HEIGHT, BACKGROUND, FOREGROUND, title);
 		// eigene Initialisierung
 		lampe1 = new Lampe(Color.BLUE, 100, 100);
 		lampe2 = new QuadratLampe(Color.GREEN, 200, 100);
 		lampe3 = new RahmenLampe(Color.YELLOW, 300, 100);
-		switch (zufall.nextInt(3)) {
-		case 0:
-			lampe4 = new Lampe(Color.RED, 200, 200);
-			break;
-		case 1:
-			lampe4 = new QuadratLampe(Color.RED, 200, 200);
-			break;
-		case 2:
-			lampe4 = new RahmenLampe(Color.RED, 200, 200);
-		}
+		lampe4 = switch (zufall.nextInt(3)) {
+			case 0 -> new Lampe(Color.RED, 200, 200);
+			case 1 -> new QuadratLampe(Color.RED, 200, 200);
+			case 2 -> new RahmenLampe(Color.RED, 200, 200);
+			default -> throw new IllegalArgumentException("Unexpected value: " + zufall.nextInt(3));
+		};
 		Timer timer = new Timer(1000, this);
 		timer.start();
 	}
@@ -53,6 +50,7 @@ public class LampenAnwendung extends HJFrame {
 
 	public static void main(final String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					LampenAnwendung anwendung = new LampenAnwendung("LampenAnwendung");
